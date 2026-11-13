@@ -1,4 +1,4 @@
-strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
-A,,,,,,,,,,,,
-B,,,,,,,,,,,,
-C,,,,,,,,,,,,
+﻿strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
+A,fixed character windows,1000,150,"document_id, source, page, unit_id, category, title",none,sentence-transformers/all-MiniLM-L6-v2,Smaller fixed windows provide focused evidence.,4/15,7/15,2/5,3/5,chunks=2200; embedding_seconds=129.84; persist_seconds=2.44; ingest_seconds=132.28; average_vector_search_ms=2.96; local embedding cost=0
+B,paragraph grouping,1200,100,"document_id, source, page, unit_id, category, title",none,sentence-transformers/all-MiniLM-L6-v2,Paragraph-aware chunks preserve self-contained ideas.,4/15,8/15,2/5,4/5,chunks=1512; embedding_seconds=26.30; persist_seconds=1.86; ingest_seconds=28.16; average_vector_search_ms=3.23; local embedding cost=0
+C,same as B,1200,100,"document_id, source, page, unit_id, category, title",category on filtered C questions only,sentence-transformers/all-MiniLM-L6-v2,Category metadata filters improve scoped retrieval.,4/15,8/15,2/5,4/5,chunks=1512; embedding_seconds=0.00; persist_seconds=1.87; ingest_seconds=1.87; average_vector_search_ms=3.15; local embedding cost=0

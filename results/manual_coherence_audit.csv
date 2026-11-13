@@ -1,0 +1,935 @@
+﻿strategy,unit_id,anchor_char,chunk_id,chunk_text,score_0_1_or_2,reason
+A,library_argparse,40877,fixed-03c2e288259c8d5cebc7d078,"ng than can be given by the type keyword. A
+JSONDecodeError would not be well formatted and a
+FileNotFoundError exception would not be handled at all.
+
+Even FileType has its limitations for use with the type
+keyword. If one argument uses FileType and then a
+subsequent argument fails, an error is reported but the file is not
+automatically closed. In this case, it would be better to wait until after
+the parser has run and then use the with-statement to manage the
+files.
+
+For type checkers that simply check against a fixed set of values, consider
+using the choices keyword instead.
+
+choices
+
+Some command-line arguments should be selected from a restricted set of values.
+These can be handled by passing a sequence object as the choices keyword
+argument to add_argument(). When the command line is
+parsed, argument values will be checked, and an error message will be displayed
+if the argument was not one of the acceptable values:",,
+A,library_asyncio,1091,fixed-a1e8cf1d537fb12abf34d1d2,"ting tasks in another running Python process with
+command-line tools;
+
+Additionally, there are low-level APIs for
+library and framework developers to:
+
+create and manage event loops, which
+provide asynchronous APIs for networking,
+running subprocesses,
+handling OS signals, etc;
+
+implement efficient protocols using
+transports;
+
+bridge callback-based libraries and code
+with async/await syntax.
+
+Availability: not WASI.
+
+This module does not work or is not available on WebAssembly. See
+WebAssembly platforms for more information.
+
+asyncio REPL
+
+You can experiment with an asyncio concurrent context in the REPL:
+
+$ python -m asyncio
+asyncio REPL ...
+Use ""await"" directly instead of ""asyncio.run()"".
+Type ""help"", ""copyright"", ""credits"" or ""license"" for more information.
+>>> import asyncio
+>>> await asyncio.sleep(10, result='hello')
+'hello'",,
+A,library_collections,21997,fixed-b10e5500015d17cf36cb8e20,"n of del d[n] relies on
+the rotate() method to position elements to be popped:
+
+def delete_nth(d, n):
+    d.rotate(-n)
+    d.popleft()
+    d.rotate(n)
+
+To implement deque slicing, use a similar approach applying
+rotate() to bring a target element to the left side of the deque. Remove
+old entries with popleft(), add new entries with extend(), and then
+reverse the rotation.
+With minor variations on that approach, it is easy to implement Forth style
+stack manipulations such as dup, drop, swap, over, pick,
+rot, and roll.
+
+defaultdict objects
+
+class collections.defaultdict(default_factory=None, /, **kwargs)
+
+class collections.defaultdict(default_factory, mapping, /, **kwargs)
+
+class collections.defaultdict(default_factory, iterable, /, **kwargs)
+
+Return a new dictionary-like object. defaultdict is a subclass of the
+built-in dict class. It overrides one method and adds one writable
+instance variable. The remaining functionality is the same as for the
+dict class and is not documented here.",,
+A,library_concurrent_futures,12835,fixed-c21eee17d225b0f83faab4e1,"un in
+the worker’s interpreter. The executor serializes the initializer
+and initargs using pickle when sending them to the worker’s
+interpreter.
+
+Note
+
+The executor may replace uncaught exceptions from initializer
+with ExecutionFailed.
+
+Other caveats from parent ThreadPoolExecutor apply here.
+
+submit() and map() work like normal,
+except the worker serializes the callable and arguments using
+pickle when sending them to its interpreter. The worker
+likewise serializes the return value when sending it back.
+
+When a worker’s current task raises an uncaught exception, the worker
+always tries to preserve the exception as-is. If that is successful
+then it also sets the __cause__ to a corresponding
+ExecutionFailed
+instance, which contains a summary of the original exception.
+In the uncommon case that the worker is not able to preserve the
+original as-is then it directly preserves the corresponding
+ExecutionFailed
+instance instead.
+
+ProcessPoolExecutor",,
+A,library_csv,10381,fixed-c32cabd2ee80c15393165b2b,"ing the parameters found. If the optional delimiters parameter
+is given, it is interpreted as a string containing possible valid
+delimiter characters.
+
+If several delimiters fit the sample equally well —
+for example if both ',' and ';' split every row consistently —
+the delimiters listed in the preferred attribute
+are preferred, in that order,
+no matter how many times each of them occurs.
+
+has_header(sample)
+
+Analyze the sample text (presumed to be in CSV format) and return
+True if the first row appears to be a series of column headers.
+Inspecting each column, one of two key criteria will be considered to
+estimate if the sample contains a header:
+
+the second through n-th rows contain numeric values
+
+the second through n-th rows contain strings where at least one value’s
+length differs from that of the putative header of that column.
+
+Twenty-one rows after the header are sampled; if more than half of the
+columns + rows meet the criteria, True is returned.
+
+Note",,
+A,library_dataclasses,14524,fixed-6429fb9272ad085bc32f63cf,"dataclass
+class Point:
+     x: int
+     y: int
+
+@dataclass
+class C:
+     mylist: list[Point]
+
+p = Point(10, 20)
+assert asdict(p) == {'x': 10, 'y': 20}
+
+c = C([Point(0, 0), Point(10, 4)])
+assert asdict(c) == {'mylist': [{'x': 0, 'y': 0}, {'x': 10, 'y': 4}]}
+
+To create a shallow copy, the following workaround may be used:
+
+{field.name: getattr(obj, field.name) for field in fields(obj)}
+
+asdict() raises TypeError if obj is not a dataclass
+instance.
+
+dataclasses.astuple(obj, *, tuple_factory=tuple)
+
+Converts the dataclass obj to a tuple (by using the
+factory function tuple_factory). Each dataclass is converted
+to a tuple of its field values. dataclasses, dicts, frozendicts, lists,
+and tuples are recursed into. Other objects are copied with
+copy.deepcopy().
+
+Continuing from the previous example:
+
+assert astuple(p) == (10, 20)
+assert astuple(c) == ([(0, 0), (10, 4)],)
+
+To create a shallow copy, the following workaround may be used:",,
+A,library_datetime,45259,fixed-1c54f8a29ffd64613d654dad,"00+00:00'
+
+The optional argument sep (default 'T') is a one-character separator,
+placed between the date and time portions of the result. For example:
+
+>>> import datetime as dt
+>>> class TZ(dt.tzinfo):
+... """"""A time zone with an arbitrary, constant -06:39 offset.""""""
+... def utcoffset(self, when):
+... return dt.timedelta(hours=-6, minutes=-39)
+...
+>>> dt.datetime(2002, 12, 25, tzinfo=TZ()).isoformat(' ')
+'2002-12-25 00:00:00-06:39'
+>>> dt.datetime(2009, 11, 27, microsecond=100, tzinfo=TZ()).isoformat()
+'2009-11-27T00:00:00.000100-06:39'
+
+The optional argument timespec specifies the number of additional
+components of the time to include (the default is 'auto').
+It can be one of the following:
+
+'auto': Same as 'seconds' if microsecond is 0,
+same as 'microseconds' otherwise.
+
+'hours': Include the hour in the two-digit HH format.
+
+'minutes': Include hour and minute in HH:MM format.
+
+'seconds': Include hour, minute, and second
+in HH:MM:SS format.",,
+A,library_decimal,34985,fixed-953759dd9516a5d28590f637,"ptions) except Inexact, Rounded, and
+Subnormal.
+
+Because many of the traps are enabled, this context is useful for debugging.
+
+decimal.ExtendedContext
+
+This is a standard context defined by the General Decimal Arithmetic
+Specification. Precision is set to nine. Rounding is set to
+ROUND_HALF_EVEN. All flags are cleared. No traps are enabled (so that
+exceptions are not raised during computations).
+
+Because the traps are disabled, this context is useful for applications that
+prefer to have result value of NaN or Infinity instead of
+raising exceptions. This allows an application to complete a run in the
+presence of conditions that would otherwise halt the program.
+
+decimal.DefaultContext
+
+This context is used by the Context constructor as a prototype for new
+contexts. Changing a field (such a precision) has the effect of changing the
+default for new contexts created by the Context constructor.",,
+A,library_functools,13355,fixed-40d652b9037980404b365d6b,"
+only the chosen number of leading positional arguments can be pre-filled.
+
+If any Placeholder sentinels are present, all must be filled at call time:
+
+>>> say_to_world = partial(print, Placeholder, Placeholder, ""world!"")
+>>> say_to_world('Hello', 'dear')
+Hello dear world!
+
+Calling say_to_world('Hello') raises a TypeError, because
+only one positional argument is provided, but there are two placeholders
+that must be filled in.
+
+If partial() is applied to an existing
+partial object, Placeholder sentinels of the
+input object are filled in with new positional arguments.
+A placeholder can be retained by inserting a new
+Placeholder sentinel to the place held by a previous Placeholder:",,
+A,library_hashlib,13198,fixed-e31cef61eb157a64827142a5,"ly take these general parameters:
+
+data: initial chunk of data to hash, which must be
+bytes-like object. It can be passed only as positional argument.
+
+digest_size: size of output digest in bytes.
+
+key: key for keyed hashing (up to 64 bytes for BLAKE2b, up to 32 bytes for
+BLAKE2s).
+
+salt: salt for randomized hashing (up to 16 bytes for BLAKE2b, up to 8
+bytes for BLAKE2s).
+
+person: personalization string (up to 16 bytes for BLAKE2b, up to 8 bytes
+for BLAKE2s).
+
+The following table shows limits for general parameters (in bytes):
+
+Hash
+
+digest_size
+
+len(key)
+
+len(salt)
+
+len(person)
+
+BLAKE2b
+
+64
+
+64
+
+16
+
+16
+
+BLAKE2s
+
+32
+
+32
+
+8
+
+8
+
+Note",,
+B,library_argparse,40877,paragraph-5d1bbc46926939ecd5280a33,">>> parser = argparse.ArgumentParser()
+>>> _ = parser.add_argument('--verbose', type=bool)
+>>> parser.parse_args(['--verbose', 'False'])
+Namespace(verbose=True)
+
+See BooleanOptionalAction or action='store_true' for common
+alternatives.
+
+In general, the type keyword is a convenience that should only be used for
+simple conversions that can only raise one of the three supported exceptions.
+Anything with more interesting error-handling or resource management should be
+done downstream after the arguments are parsed.
+
+For example, JSON or YAML conversions have complex error cases that require
+better reporting than can be given by the type keyword. A
+JSONDecodeError would not be well formatted and a
+FileNotFoundError exception would not be handled at all.
+
+Even FileType has its limitations for use with the type
+keyword. If one argument uses FileType and then a
+subsequent argument fails, an error is reported but the file is not
+automatically closed. In this case, it would be better to wait until after
+the parser has run and then use the with-statement to manage the
+files.
+
+For type checkers that simply check against a fixed set of values, consider
+using the choices keyword instead.",,
+B,library_asyncio,1091,paragraph-5c6424c0fe30ea955cd8a642,"asyncio — Asynchronous I/O
+
+asyncio is a library to write concurrent code using
+the async/await syntax.
+
+asyncio is used as a foundation for multiple Python asynchronous
+frameworks that provide high-performance network and web-servers,
+database connection libraries, distributed task queues, etc.
+
+asyncio is often a perfect fit for IO-bound and high-level
+structured network code.
+
+See also
+
+A conceptual overview of asyncio
+
+Explanation of the fundamentals of asyncio.
+
+asyncio provides a set of high-level APIs to:
+
+run Python coroutines concurrently and
+have full control over their execution;
+
+perform network IO and IPC;
+
+control subprocesses;
+
+distribute tasks via queues;
+
+synchronize concurrent code;
+
+For introspection, asyncio provides APIs and tools for:
+
+inspecting the async call graph of tasks and futures;
+
+inspecting tasks in another running Python process with
+command-line tools;
+
+Additionally, there are low-level APIs for
+library and framework developers to:
+
+create and manage event loops, which
+provide asynchronous APIs for networking,
+running subprocesses,
+handling OS signals, etc;
+
+implement efficient protocols using
+transports;",,
+B,library_collections,21997,paragraph-57879a5ce3ac4dc8ac3842f1,"To implement deque slicing, use a similar approach applying
+rotate() to bring a target element to the left side of the deque. Remove
+old entries with popleft(), add new entries with extend(), and then
+reverse the rotation.
+With minor variations on that approach, it is easy to implement Forth style
+stack manipulations such as dup, drop, swap, over, pick,
+rot, and roll.
+
+defaultdict objects
+
+class collections.defaultdict(default_factory=None, /, **kwargs)
+
+class collections.defaultdict(default_factory, mapping, /, **kwargs)
+
+class collections.defaultdict(default_factory, iterable, /, **kwargs)
+
+Return a new dictionary-like object. defaultdict is a subclass of the
+built-in dict class. It overrides one method and adds one writable
+instance variable. The remaining functionality is the same as for the
+dict class and is not documented here.
+
+The first argument provides the initial value for the default_factory
+attribute; it defaults to None. All remaining arguments are treated the same
+as if they were passed to the dict constructor, including keyword
+arguments.
+
+defaultdicts are generic over two types,
+signifying (respectively) the types of the dictionary’s keys and values.",,
+B,library_concurrent_futures,12835,paragraph-1ccf8790ce00b7254e388657,"The executor may replace uncaught exceptions from initializer
+with ExecutionFailed.
+
+Other caveats from parent ThreadPoolExecutor apply here.
+
+submit() and map() work like normal,
+except the worker serializes the callable and arguments using
+pickle when sending them to its interpreter. The worker
+likewise serializes the return value when sending it back.
+
+When a worker’s current task raises an uncaught exception, the worker
+always tries to preserve the exception as-is. If that is successful
+then it also sets the __cause__ to a corresponding
+ExecutionFailed
+instance, which contains a summary of the original exception.
+In the uncommon case that the worker is not able to preserve the
+original as-is then it directly preserves the corresponding
+ExecutionFailed
+instance instead.
+
+ProcessPoolExecutor
+
+The ProcessPoolExecutor class is an Executor subclass that
+uses a pool of processes to execute calls asynchronously.
+ProcessPoolExecutor uses the multiprocessing module, which
+allows it to side-step the Global Interpreter Lock but also means that
+only picklable objects can be executed and returned.",,
+B,library_csv,10381,paragraph-566ce784604ebd5d1ade2b3f,"The excel_tab class defines the usual properties of an Excel-generated
+TAB-delimited file. It is registered with the dialect name 'excel-tab'.
+
+class csv.unix_dialect
+
+The unix_dialect class defines the usual properties of a CSV file
+generated on UNIX systems, i.e. using '\n' as line terminator and quoting
+all fields. It is registered with the dialect name 'unix'.
+
+Added in version 3.2.
+
+class csv.Sniffer
+
+The Sniffer class is used to deduce the format of a CSV file.
+
+The Sniffer class provides two methods:
+
+sniff(sample, delimiters=None)
+
+Analyze the given sample and return a Dialect subclass
+reflecting the parameters found. If the optional delimiters parameter
+is given, it is interpreted as a string containing possible valid
+delimiter characters.
+
+If several delimiters fit the sample equally well —
+for example if both ',' and ';' split every row consistently —
+the delimiters listed in the preferred attribute
+are preferred, in that order,
+no matter how many times each of them occurs.
+
+has_header(sample)",,
+B,library_dataclasses,14524,paragraph-2c203eb17c923e248a5e5a98,"Example of using asdict() on nested dataclasses:
+
+@dataclass
+class Point:
+     x: int
+     y: int
+
+@dataclass
+class C:
+     mylist: list[Point]
+
+p = Point(10, 20)
+assert asdict(p) == {'x': 10, 'y': 20}
+
+c = C([Point(0, 0), Point(10, 4)])
+assert asdict(c) == {'mylist': [{'x': 0, 'y': 0}, {'x': 10, 'y': 4}]}
+
+To create a shallow copy, the following workaround may be used:
+
+{field.name: getattr(obj, field.name) for field in fields(obj)}
+
+asdict() raises TypeError if obj is not a dataclass
+instance.
+
+dataclasses.astuple(obj, *, tuple_factory=tuple)
+
+Converts the dataclass obj to a tuple (by using the
+factory function tuple_factory). Each dataclass is converted
+to a tuple of its field values. dataclasses, dicts, frozendicts, lists,
+and tuples are recursed into. Other objects are copied with
+copy.deepcopy().
+
+Continuing from the previous example:
+
+assert astuple(p) == (10, 20)
+assert astuple(c) == ([(0, 0), (10, 4)],)
+
+To create a shallow copy, the following workaround may be used:
+
+tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))
+
+astuple() raises TypeError if obj is not a dataclass
+instance.",,
+B,library_datetime,45259,paragraph-06c868d70d0432ab8c40040d,"The optional argument timespec specifies the number of additional
+components of the time to include (the default is 'auto').
+It can be one of the following:
+
+'auto': Same as 'seconds' if microsecond is 0,
+same as 'microseconds' otherwise.
+
+'hours': Include the hour in the two-digit HH format.
+
+'minutes': Include hour and minute in HH:MM format.
+
+'seconds': Include hour, minute, and second
+in HH:MM:SS format.
+
+'milliseconds': Include full time, but truncate fractional second
+part to milliseconds. HH:MM:SS.sss format.
+
+'microseconds': Include full time in HH:MM:SS.ffffff format.
+
+Note
+
+Excluded time components are truncated, not rounded.
+
+ValueError will be raised on an invalid timespec argument:
+
+>>> import datetime as dt
+>>> dt.datetime.now().isoformat(timespec='minutes')
+'2002-12-25T00:00'
+>>> my_datetime = dt.datetime(2015, 1, 1, 12, 30, 59, 0)
+>>> my_datetime.isoformat(timespec='microseconds')
+'2015-01-01T12:30:59.000000'
+
+Changed in version 3.6: Added the timespec parameter.
+
+datetime.__str__()
+
+For a datetime instance d, str(d) is equivalent to
+d.isoformat(' ').
+
+datetime.ctime()
+
+Return a string representing the date and time:",,
+B,library_decimal,34985,paragraph-e347c3a965496dfa99d5f781,"Return a context object initialized to the proper values for one of the
+IEEE interchange formats. The argument must be a multiple of 32 and less
+than IEEE_CONTEXT_MAX_BITS.
+
+Added in version 3.14.
+
+New contexts can also be created using the Context constructor
+described below. In addition, the module provides three pre-made contexts:
+
+decimal.BasicContext
+
+This is a standard context defined by the General Decimal Arithmetic
+Specification. Precision is set to nine. Rounding is set to
+ROUND_HALF_UP. All flags are cleared. All traps are enabled (treated
+as exceptions) except Inexact, Rounded, and
+Subnormal.
+
+Because many of the traps are enabled, this context is useful for debugging.
+
+decimal.ExtendedContext
+
+This is a standard context defined by the General Decimal Arithmetic
+Specification. Precision is set to nine. Rounding is set to
+ROUND_HALF_EVEN. All flags are cleared. No traps are enabled (so that
+exceptions are not raised during computations).",,
+B,library_functools,13355,paragraph-9fc9e01f7b48b783eabd63d8,"If Placeholder sentinels are present in args, they will be filled first
+when partial() is called. This makes it possible to pre-fill any positional
+argument with a call to partial(); without Placeholder,
+only the chosen number of leading positional arguments can be pre-filled.
+
+If any Placeholder sentinels are present, all must be filled at call time:
+
+>>> say_to_world = partial(print, Placeholder, Placeholder, ""world!"")
+>>> say_to_world('Hello', 'dear')
+Hello dear world!
+
+Calling say_to_world('Hello') raises a TypeError, because
+only one positional argument is provided, but there are two placeholders
+that must be filled in.
+
+If partial() is applied to an existing
+partial object, Placeholder sentinels of the
+input object are filled in with new positional arguments.
+A placeholder can be retained by inserting a new
+Placeholder sentinel to the place held by a previous Placeholder:",,
+B,library_hashlib,13198,paragraph-bf7f45b1b16d9c75dd6dc160,"Hash objects from this module follow the API of standard library’s
+hashlib objects.
+
+Creating hash objects
+
+New hash objects are created by calling constructor functions:
+
+hashlib.blake2b(data=b'', *, digest_size=64, key=b'', salt=b'', person=b'', fanout=1, depth=1, leaf_size=0, node_offset=0, node_depth=0, inner_size=0, last_node=False, usedforsecurity=True)
+
+hashlib.blake2s(data=b'', *, digest_size=32, key=b'', salt=b'', person=b'', fanout=1, depth=1, leaf_size=0, node_offset=0, node_depth=0, inner_size=0, last_node=False, usedforsecurity=True)
+
+These functions return the corresponding hash objects for calculating
+BLAKE2b or BLAKE2s. They optionally take these general parameters:
+
+data: initial chunk of data to hash, which must be
+bytes-like object. It can be passed only as positional argument.
+
+digest_size: size of output digest in bytes.
+
+key: key for keyed hashing (up to 64 bytes for BLAKE2b, up to 32 bytes for
+BLAKE2s).
+
+salt: salt for randomized hashing (up to 16 bytes for BLAKE2b, up to 8
+bytes for BLAKE2s).
+
+person: personalization string (up to 16 bytes for BLAKE2b, up to 8 bytes
+for BLAKE2s).
+
+The following table shows limits for general parameters (in bytes):
+
+Hash",,
+C,library_argparse,40877,paragraph-5d1bbc46926939ecd5280a33,">>> parser = argparse.ArgumentParser()
+>>> _ = parser.add_argument('--verbose', type=bool)
+>>> parser.parse_args(['--verbose', 'False'])
+Namespace(verbose=True)
+
+See BooleanOptionalAction or action='store_true' for common
+alternatives.
+
+In general, the type keyword is a convenience that should only be used for
+simple conversions that can only raise one of the three supported exceptions.
+Anything with more interesting error-handling or resource management should be
+done downstream after the arguments are parsed.
+
+For example, JSON or YAML conversions have complex error cases that require
+better reporting than can be given by the type keyword. A
+JSONDecodeError would not be well formatted and a
+FileNotFoundError exception would not be handled at all.
+
+Even FileType has its limitations for use with the type
+keyword. If one argument uses FileType and then a
+subsequent argument fails, an error is reported but the file is not
+automatically closed. In this case, it would be better to wait until after
+the parser has run and then use the with-statement to manage the
+files.
+
+For type checkers that simply check against a fixed set of values, consider
+using the choices keyword instead.",,
+C,library_asyncio,1091,paragraph-5c6424c0fe30ea955cd8a642,"asyncio — Asynchronous I/O
+
+asyncio is a library to write concurrent code using
+the async/await syntax.
+
+asyncio is used as a foundation for multiple Python asynchronous
+frameworks that provide high-performance network and web-servers,
+database connection libraries, distributed task queues, etc.
+
+asyncio is often a perfect fit for IO-bound and high-level
+structured network code.
+
+See also
+
+A conceptual overview of asyncio
+
+Explanation of the fundamentals of asyncio.
+
+asyncio provides a set of high-level APIs to:
+
+run Python coroutines concurrently and
+have full control over their execution;
+
+perform network IO and IPC;
+
+control subprocesses;
+
+distribute tasks via queues;
+
+synchronize concurrent code;
+
+For introspection, asyncio provides APIs and tools for:
+
+inspecting the async call graph of tasks and futures;
+
+inspecting tasks in another running Python process with
+command-line tools;
+
+Additionally, there are low-level APIs for
+library and framework developers to:
+
+create and manage event loops, which
+provide asynchronous APIs for networking,
+running subprocesses,
+handling OS signals, etc;
+
+implement efficient protocols using
+transports;",,
+C,library_collections,21997,paragraph-57879a5ce3ac4dc8ac3842f1,"To implement deque slicing, use a similar approach applying
+rotate() to bring a target element to the left side of the deque. Remove
+old entries with popleft(), add new entries with extend(), and then
+reverse the rotation.
+With minor variations on that approach, it is easy to implement Forth style
+stack manipulations such as dup, drop, swap, over, pick,
+rot, and roll.
+
+defaultdict objects
+
+class collections.defaultdict(default_factory=None, /, **kwargs)
+
+class collections.defaultdict(default_factory, mapping, /, **kwargs)
+
+class collections.defaultdict(default_factory, iterable, /, **kwargs)
+
+Return a new dictionary-like object. defaultdict is a subclass of the
+built-in dict class. It overrides one method and adds one writable
+instance variable. The remaining functionality is the same as for the
+dict class and is not documented here.
+
+The first argument provides the initial value for the default_factory
+attribute; it defaults to None. All remaining arguments are treated the same
+as if they were passed to the dict constructor, including keyword
+arguments.
+
+defaultdicts are generic over two types,
+signifying (respectively) the types of the dictionary’s keys and values.",,
+C,library_concurrent_futures,12835,paragraph-1ccf8790ce00b7254e388657,"The executor may replace uncaught exceptions from initializer
+with ExecutionFailed.
+
+Other caveats from parent ThreadPoolExecutor apply here.
+
+submit() and map() work like normal,
+except the worker serializes the callable and arguments using
+pickle when sending them to its interpreter. The worker
+likewise serializes the return value when sending it back.
+
+When a worker’s current task raises an uncaught exception, the worker
+always tries to preserve the exception as-is. If that is successful
+then it also sets the __cause__ to a corresponding
+ExecutionFailed
+instance, which contains a summary of the original exception.
+In the uncommon case that the worker is not able to preserve the
+original as-is then it directly preserves the corresponding
+ExecutionFailed
+instance instead.
+
+ProcessPoolExecutor
+
+The ProcessPoolExecutor class is an Executor subclass that
+uses a pool of processes to execute calls asynchronously.
+ProcessPoolExecutor uses the multiprocessing module, which
+allows it to side-step the Global Interpreter Lock but also means that
+only picklable objects can be executed and returned.",,
+C,library_csv,10381,paragraph-566ce784604ebd5d1ade2b3f,"The excel_tab class defines the usual properties of an Excel-generated
+TAB-delimited file. It is registered with the dialect name 'excel-tab'.
+
+class csv.unix_dialect
+
+The unix_dialect class defines the usual properties of a CSV file
+generated on UNIX systems, i.e. using '\n' as line terminator and quoting
+all fields. It is registered with the dialect name 'unix'.
+
+Added in version 3.2.
+
+class csv.Sniffer
+
+The Sniffer class is used to deduce the format of a CSV file.
+
+The Sniffer class provides two methods:
+
+sniff(sample, delimiters=None)
+
+Analyze the given sample and return a Dialect subclass
+reflecting the parameters found. If the optional delimiters parameter
+is given, it is interpreted as a string containing possible valid
+delimiter characters.
+
+If several delimiters fit the sample equally well —
+for example if both ',' and ';' split every row consistently —
+the delimiters listed in the preferred attribute
+are preferred, in that order,
+no matter how many times each of them occurs.
+
+has_header(sample)",,
+C,library_dataclasses,14524,paragraph-2c203eb17c923e248a5e5a98,"Example of using asdict() on nested dataclasses:
+
+@dataclass
+class Point:
+     x: int
+     y: int
+
+@dataclass
+class C:
+     mylist: list[Point]
+
+p = Point(10, 20)
+assert asdict(p) == {'x': 10, 'y': 20}
+
+c = C([Point(0, 0), Point(10, 4)])
+assert asdict(c) == {'mylist': [{'x': 0, 'y': 0}, {'x': 10, 'y': 4}]}
+
+To create a shallow copy, the following workaround may be used:
+
+{field.name: getattr(obj, field.name) for field in fields(obj)}
+
+asdict() raises TypeError if obj is not a dataclass
+instance.
+
+dataclasses.astuple(obj, *, tuple_factory=tuple)
+
+Converts the dataclass obj to a tuple (by using the
+factory function tuple_factory). Each dataclass is converted
+to a tuple of its field values. dataclasses, dicts, frozendicts, lists,
+and tuples are recursed into. Other objects are copied with
+copy.deepcopy().
+
+Continuing from the previous example:
+
+assert astuple(p) == (10, 20)
+assert astuple(c) == ([(0, 0), (10, 4)],)
+
+To create a shallow copy, the following workaround may be used:
+
+tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))
+
+astuple() raises TypeError if obj is not a dataclass
+instance.",,
+C,library_datetime,45259,paragraph-06c868d70d0432ab8c40040d,"The optional argument timespec specifies the number of additional
+components of the time to include (the default is 'auto').
+It can be one of the following:
+
+'auto': Same as 'seconds' if microsecond is 0,
+same as 'microseconds' otherwise.
+
+'hours': Include the hour in the two-digit HH format.
+
+'minutes': Include hour and minute in HH:MM format.
+
+'seconds': Include hour, minute, and second
+in HH:MM:SS format.
+
+'milliseconds': Include full time, but truncate fractional second
+part to milliseconds. HH:MM:SS.sss format.
+
+'microseconds': Include full time in HH:MM:SS.ffffff format.
+
+Note
+
+Excluded time components are truncated, not rounded.
+
+ValueError will be raised on an invalid timespec argument:
+
+>>> import datetime as dt
+>>> dt.datetime.now().isoformat(timespec='minutes')
+'2002-12-25T00:00'
+>>> my_datetime = dt.datetime(2015, 1, 1, 12, 30, 59, 0)
+>>> my_datetime.isoformat(timespec='microseconds')
+'2015-01-01T12:30:59.000000'
+
+Changed in version 3.6: Added the timespec parameter.
+
+datetime.__str__()
+
+For a datetime instance d, str(d) is equivalent to
+d.isoformat(' ').
+
+datetime.ctime()
+
+Return a string representing the date and time:",,
+C,library_decimal,34985,paragraph-e347c3a965496dfa99d5f781,"Return a context object initialized to the proper values for one of the
+IEEE interchange formats. The argument must be a multiple of 32 and less
+than IEEE_CONTEXT_MAX_BITS.
+
+Added in version 3.14.
+
+New contexts can also be created using the Context constructor
+described below. In addition, the module provides three pre-made contexts:
+
+decimal.BasicContext
+
+This is a standard context defined by the General Decimal Arithmetic
+Specification. Precision is set to nine. Rounding is set to
+ROUND_HALF_UP. All flags are cleared. All traps are enabled (treated
+as exceptions) except Inexact, Rounded, and
+Subnormal.
+
+Because many of the traps are enabled, this context is useful for debugging.
+
+decimal.ExtendedContext
+
+This is a standard context defined by the General Decimal Arithmetic
+Specification. Precision is set to nine. Rounding is set to
+ROUND_HALF_EVEN. All flags are cleared. No traps are enabled (so that
+exceptions are not raised during computations).",,
+C,library_functools,13355,paragraph-9fc9e01f7b48b783eabd63d8,"If Placeholder sentinels are present in args, they will be filled first
+when partial() is called. This makes it possible to pre-fill any positional
+argument with a call to partial(); without Placeholder,
+only the chosen number of leading positional arguments can be pre-filled.
+
+If any Placeholder sentinels are present, all must be filled at call time:
+
+>>> say_to_world = partial(print, Placeholder, Placeholder, ""world!"")
+>>> say_to_world('Hello', 'dear')
+Hello dear world!
+
+Calling say_to_world('Hello') raises a TypeError, because
+only one positional argument is provided, but there are two placeholders
+that must be filled in.
+
+If partial() is applied to an existing
+partial object, Placeholder sentinels of the
+input object are filled in with new positional arguments.
+A placeholder can be retained by inserting a new
+Placeholder sentinel to the place held by a previous Placeholder:",,
+C,library_hashlib,13198,paragraph-bf7f45b1b16d9c75dd6dc160,"Hash objects from this module follow the API of standard library’s
+hashlib objects.
+
+Creating hash objects
+
+New hash objects are created by calling constructor functions:
+
+hashlib.blake2b(data=b'', *, digest_size=64, key=b'', salt=b'', person=b'', fanout=1, depth=1, leaf_size=0, node_offset=0, node_depth=0, inner_size=0, last_node=False, usedforsecurity=True)
+
+hashlib.blake2s(data=b'', *, digest_size=32, key=b'', salt=b'', person=b'', fanout=1, depth=1, leaf_size=0, node_offset=0, node_depth=0, inner_size=0, last_node=False, usedforsecurity=True)
+
+These functions return the corresponding hash objects for calculating
+BLAKE2b or BLAKE2s. They optionally take these general parameters:
+
+data: initial chunk of data to hash, which must be
+bytes-like object. It can be passed only as positional argument.
+
+digest_size: size of output digest in bytes.
+
+key: key for keyed hashing (up to 64 bytes for BLAKE2b, up to 32 bytes for
+BLAKE2s).
+
+salt: salt for randomized hashing (up to 16 bytes for BLAKE2b, up to 8
+bytes for BLAKE2s).
+
+person: personalization string (up to 16 bytes for BLAKE2b, up to 8 bytes
+for BLAKE2s).
+
+The following table shows limits for general parameters (in bytes):
+
+Hash",,

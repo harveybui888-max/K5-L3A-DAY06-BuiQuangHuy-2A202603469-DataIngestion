@@ -1,0 +1,148 @@
+{
+  "run_at": "2026-11-13T05:34:25.167894+00:00",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "model_dimensions": 384,
+  "device": "CPU (FastEmbed/ONNX Runtime)",
+  "vector_store": "Chroma persistent, cosine distance",
+  "corpus_units": 33,
+  "corpus_total_characters": 1626433,
+  "benchmark_questions": 20,
+  "split": "all",
+  "top_k": 3,
+  "strategies": {
+    "A": {
+      "configuration": {
+        "chunking": "fixed character windows",
+        "chunk_size": 1000,
+        "overlap": 150,
+        "hypothesis": "Smaller fixed windows provide focused evidence."
+      },
+      "chunk_count": 2200,
+      "total_chunk_characters": 1951483,
+      "median_chunk_characters": 919.0,
+      "embedding_seconds": 129.8436931000033,
+      "persist_seconds": 2.4358142999990378,
+      "embedding_cost": 0.0,
+      "ingest_seconds": 132.27950740000233,
+      "average_vector_search_seconds": 0.002964960002282169
+    },
+    "B": {
+      "configuration": {
+        "chunking": "paragraph grouping",
+        "chunk_size": 1200,
+        "overlap": 100,
+        "hypothesis": "Paragraph-aware chunks preserve self-contained ideas."
+      },
+      "chunk_count": 1512,
+      "total_chunk_characters": 1623708,
+      "median_chunk_characters": 1120.0,
+      "embedding_seconds": 26.30297839999548,
+      "persist_seconds": 1.859167399990838,
+      "embedding_cost": 0.0,
+      "ingest_seconds": 28.16214579998632,
+      "average_vector_search_seconds": 0.0032303999963914976
+    },
+    "C": {
+      "configuration": {
+        "chunking": "same as B",
+        "chunk_size": 1200,
+        "overlap": 100,
+        "hypothesis": "Category metadata filters improve scoped retrieval."
+      },
+      "chunk_count": 1512,
+      "total_chunk_characters": 1623708,
+      "median_chunk_characters": 1120.0,
+      "embedding_seconds": 5.00003807246685e-07,
+      "persist_seconds": 1.872149000002537,
+      "embedding_cost": 0.0,
+      "ingest_seconds": 1.8721495000063442,
+      "average_vector_search_seconds": 0.003145444999972824
+    }
+  },
+  "metrics": {
+    "A": {
+      "dev": {
+        "hit_at_1": {
+          "hits": 4,
+          "total": 15,
+          "rate": 0.26666666666666666
+        },
+        "evidence_hit_at_3": {
+          "hits": 7,
+          "total": 15,
+          "rate": 0.4666666666666667
+        }
+      },
+      "test": {
+        "hit_at_1": {
+          "hits": 2,
+          "total": 5,
+          "rate": 0.4
+        },
+        "evidence_hit_at_3": {
+          "hits": 3,
+          "total": 5,
+          "rate": 0.6
+        }
+      }
+    },
+    "B": {
+      "dev": {
+        "hit_at_1": {
+          "hits": 4,
+          "total": 15,
+          "rate": 0.26666666666666666
+        },
+        "evidence_hit_at_3": {
+          "hits": 8,
+          "total": 15,
+          "rate": 0.5333333333333333
+        }
+      },
+      "test": {
+        "hit_at_1": {
+          "hits": 2,
+          "total": 5,
+          "rate": 0.4
+        },
+        "evidence_hit_at_3": {
+          "hits": 4,
+          "total": 5,
+          "rate": 0.8
+        }
+      }
+    },
+    "C": {
+      "dev": {
+        "hit_at_1": {
+          "hits": 4,
+          "total": 15,
+          "rate": 0.26666666666666666
+        },
+        "evidence_hit_at_3": {
+          "hits": 8,
+          "total": 15,
+          "rate": 0.5333333333333333
+        }
+      },
+      "test": {
+        "hit_at_1": {
+          "hits": 2,
+          "total": 5,
+          "rate": 0.4
+        },
+        "evidence_hit_at_3": {
+          "hits": 4,
+          "total": 5,
+          "rate": 0.8
+        }
+      }
+    }
+  },
+  "package_versions": {
+    "chromadb": "1.5.9",
+    "fastembed": "0.9.1"
+  },
+  "trace_file": "results\\traces_all.jsonl",
+  "manual_assessments": "Templates generated; student labels are intentionally blank."
+}
