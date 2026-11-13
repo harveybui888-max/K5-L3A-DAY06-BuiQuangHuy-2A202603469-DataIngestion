@@ -1,0 +1,3 @@
+Python documentation is licensed under the Python Software Foundation License Version 2.
+Copyright © 2001 Python Software Foundation; All Rights Reserved.
+Source and license: https://docs.python.org/3/license.html
