@@ -1,5 +1,6 @@
 __pycache__/
 .venv/
+**/.venv/
 .env
 *.pyc
 
@@ -8,3 +9,4 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 *.sqlite
+starter/data/chroma/

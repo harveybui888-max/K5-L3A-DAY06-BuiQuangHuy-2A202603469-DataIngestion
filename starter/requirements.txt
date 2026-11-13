@@ -1,4 +1,8 @@
-# Core setup and PDF parsing. Choose and install an embedding SDK separately.
+# Dependencies for the retained optional PostgreSQL + pgvector starter.
 psycopg[binary]==3.3.8
 pypdf>=5,<7
 python-dotenv>=1,<2
+
+# Persistent local vector search and a real local embedding model.
+chromadb>=1.0,<2
+fastembed>=0.7,<1
