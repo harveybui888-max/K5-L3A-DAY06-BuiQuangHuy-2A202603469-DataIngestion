@@ -19,7 +19,7 @@ Some command-line arguments should be selected from a restricted set of values.
 These can be handled by passing a sequence object as the choices keyword
 argument to add_argument(). When the command line is
 parsed, argument values will be checked, and an error message will be displayed
-if the argument was not one of the acceptable values:",,
+if the argument was not one of the acceptable values:",1,Bắt đầu giữa câu về xử lý kiểu; hiểu được phần nội dung sau nhưng thiếu ngữ cảnh đầu.
 A,library_asyncio,1091,fixed-a1e8cf1d537fb12abf34d1d2,"ting tasks in another running Python process with
 command-line tools;
 
@@ -52,7 +52,7 @@ Use ""await"" directly instead of ""asyncio.run()"".
 Type ""help"", ""copyright"", ""credits"" or ""license"" for more information.
 >>> import asyncio
 >>> await asyncio.sleep(10, result='hello')
-'hello'",,
+'hello'",1,Bắt đầu giữa mục liệt kê API cấp thấp; phần REPL phía sau rõ nhưng đoạn đầu bị cắt.
 A,library_collections,21997,fixed-b10e5500015d17cf36cb8e20,"n of del d[n] relies on
 the rotate() method to position elements to be popped:
 
@@ -80,7 +80,7 @@ class collections.defaultdict(default_factory, iterable, /, **kwargs)
 Return a new dictionary-like object. defaultdict is a subclass of the
 built-in dict class. It overrides one method and adds one writable
 instance variable. The remaining functionality is the same as for the
-dict class and is not documented here.",,
+dict class and is not documented here.",1,Bắt đầu giữa giải thích deque; phần defaultdict phía sau tự hiểu được nhưng chuyển chủ ý đột ngột.
 A,library_concurrent_futures,12835,fixed-c21eee17d225b0f83faab4e1,"un in
 the worker’s interpreter. The executor serializes the initializer
 and initargs using pickle when sending them to the worker’s
@@ -108,7 +108,7 @@ original as-is then it directly preserves the corresponding
 ExecutionFailed
 instance instead.
 
-ProcessPoolExecutor",,
+ProcessPoolExecutor",1,Mở đầu bằng mảnh câu về worker/interpreter; phần giải thích sau rõ nhưng thiếu chủ thể ban đầu.
 A,library_csv,10381,fixed-c32cabd2ee80c15393165b2b,"ing the parameters found. If the optional delimiters parameter
 is given, it is interpreted as a string containing possible valid
 delimiter characters.
@@ -134,7 +134,7 @@ length differs from that of the putative header of that column.
 Twenty-one rows after the header are sampled; if more than half of the
 columns + rows meet the criteria, True is returned.
 
-Note",,
+Note",1,Mở đầu giữa mô tả tham số Sniffer; phần has_header phía sau rõ nhưng thiếu câu dẫn.
 A,library_dataclasses,14524,fixed-6429fb9272ad085bc32f63cf,"dataclass
 class Point:
      x: int
@@ -170,7 +170,7 @@ Continuing from the previous example:
 assert astuple(p) == (10, 20)
 assert astuple(c) == ([(0, 0), (10, 4)],)
 
-To create a shallow copy, the following workaround may be used:",,
+To create a shallow copy, the following workaround may be used:",1,"Ví dụ asdict/astuple hiểu được, nhưng bắt đầu giữa ví dụ và thiếu phần dẫn về dataclass."
 A,library_datetime,45259,fixed-1c54f8a29ffd64613d654dad,"00+00:00'
 
 The optional argument sep (default 'T') is a one-character separator,
@@ -199,7 +199,7 @@ same as 'microseconds' otherwise.
 'minutes': Include hour and minute in HH:MM format.
 
 'seconds': Include hour, minute, and second
-in HH:MM:SS format.",,
+in HH:MM:SS format.",1,Bắt đầu bằng phần cuối giá trị thời gian; phần giải thích timespec sau đó khá rõ.
 A,library_decimal,34985,fixed-953759dd9516a5d28590f637,"ptions) except Inexact, Rounded, and
 Subnormal.
 
@@ -221,7 +221,7 @@ decimal.DefaultContext
 
 This context is used by the Context constructor as a prototype for new
 contexts. Changing a field (such a precision) has the effect of changing the
-default for new contexts created by the Context constructor.",,
+default for new contexts created by the Context constructor.",1,Mở đầu giữa danh sách trap; phần ExtendedContext sau đó rõ nhưng thiếu ngữ cảnh trước.
 A,library_functools,13355,fixed-40d652b9037980404b365d6b,"
 only the chosen number of leading positional arguments can be pre-filled.
 
@@ -239,7 +239,7 @@ If partial() is applied to an existing
 partial object, Placeholder sentinels of the
 input object are filled in with new positional arguments.
 A placeholder can be retained by inserting a new
-Placeholder sentinel to the place held by a previous Placeholder:",,
+Placeholder sentinel to the place held by a previous Placeholder:",1,Mở đầu giữa giải thích Placeholder; ví dụ giúp hiểu một phần nhưng thiếu phần giới thiệu.
 A,library_hashlib,13198,fixed-e31cef61eb157a64827142a5,"ly take these general parameters:
 
 data: initial chunk of data to hash, which must be
@@ -288,7 +288,7 @@ BLAKE2s
 
 8
 
-Note",,
+Note",1,Mở đầu giữa câu về tham số hash; danh sách sau có cấu trúc nhưng thiếu câu mở đầu.
 B,library_argparse,40877,paragraph-5d1bbc46926939ecd5280a33,">>> parser = argparse.ArgumentParser()
 >>> _ = parser.add_argument('--verbose', type=bool)
 >>> parser.parse_args(['--verbose', 'False'])
@@ -315,7 +315,7 @@ the parser has run and then use the with-statement to manage the
 files.
 
 For type checkers that simply check against a fixed set of values, consider
-using the choices keyword instead.",,
+using the choices keyword instead.",2,"Ví dụ parse_args và giải thích type/choices liền mạch, dễ hiểu khi đọc riêng."
 B,library_asyncio,1091,paragraph-5c6424c0fe30ea955cd8a642,"asyncio — Asynchronous I/O
 
 asyncio is a library to write concurrent code using
@@ -363,7 +363,7 @@ running subprocesses,
 handling OS signals, etc;
 
 implement efficient protocols using
-transports;",,
+transports;",2,Mở đầu bằng tiêu đề và định nghĩa asyncio; các chức năng/API được liệt kê rõ.
 B,library_collections,21997,paragraph-57879a5ce3ac4dc8ac3842f1,"To implement deque slicing, use a similar approach applying
 rotate() to bring a target element to the left side of the deque. Remove
 old entries with popleft(), add new entries with extend(), and then
@@ -391,7 +391,7 @@ as if they were passed to the dict constructor, including keyword
 arguments.
 
 defaultdicts are generic over two types,
-signifying (respectively) the types of the dictionary’s keys and values.",,
+signifying (respectively) the types of the dictionary’s keys and values.",1,Đoạn deque mở bằng tham chiếu similar approach; phần defaultdict sau đó rõ nhưng thiếu liên kết chủ đề.
 B,library_concurrent_futures,12835,paragraph-1ccf8790ce00b7254e388657,"The executor may replace uncaught exceptions from initializer
 with ExecutionFailed.
 
@@ -418,7 +418,7 @@ The ProcessPoolExecutor class is an Executor subclass that
 uses a pool of processes to execute calls asynchronously.
 ProcessPoolExecutor uses the multiprocessing module, which
 allows it to side-step the Global Interpreter Lock but also means that
-only picklable objects can be executed and returned.",,
+only picklable objects can be executed and returned.",1,Nêu worker/executor nhưng bắt đầu giữa ngữ cảnh ProcessPool; phần sau khá rõ.
 B,library_csv,10381,paragraph-566ce784604ebd5d1ade2b3f,"The excel_tab class defines the usual properties of an Excel-generated
 TAB-delimited file. It is registered with the dialect name 'excel-tab'.
 
@@ -449,7 +449,7 @@ the delimiters listed in the preferred attribute
 are preferred, in that order,
 no matter how many times each of them occurs.
 
-has_header(sample)",,
+has_header(sample)",2,"Mô tả Sniffer và hai phương thức sniff/has_header thành mạch, đầy đủ."
 B,library_dataclasses,14524,paragraph-2c203eb17c923e248a5e5a98,"Example of using asdict() on nested dataclasses:
 
 @dataclass
@@ -492,7 +492,7 @@ To create a shallow copy, the following workaround may be used:
 tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))
 
 astuple() raises TypeError if obj is not a dataclass
-instance.",,
+instance.",2,"Ví dụ asdict/astuple và kết quả được trình bày đầy đủ, có thể hiểu độc lập."
 B,library_datetime,45259,paragraph-06c868d70d0432ab8c40040d,"The optional argument timespec specifies the number of additional
 components of the time to include (the default is 'auto').
 It can be one of the following:
@@ -534,7 +534,7 @@ d.isoformat(' ').
 
 datetime.ctime()
 
-Return a string representing the date and time:",,
+Return a string representing the date and time:",2,"Giải thích timespec, tênh giá trị và ví dụ ValueError liền mạch."
 B,library_decimal,34985,paragraph-e347c3a965496dfa99d5f781,"Return a context object initialized to the proper values for one of the
 IEEE interchange formats. The argument must be a multiple of 32 and less
 than IEEE_CONTEXT_MAX_BITS.
@@ -559,7 +559,7 @@ decimal.ExtendedContext
 This is a standard context defined by the General Decimal Arithmetic
 Specification. Precision is set to nine. Rounding is set to
 ROUND_HALF_EVEN. All flags are cleared. No traps are enabled (so that
-exceptions are not raised during computations).",,
+exceptions are not raised during computations).",1,Bắt đầu bằng mô tả một context chưa có tên; nội dung các context sau dễ hiểu một phần.
 B,library_functools,13355,paragraph-9fc9e01f7b48b783eabd63d8,"If Placeholder sentinels are present in args, they will be filled first
 when partial() is called. This makes it possible to pre-fill any positional
 argument with a call to partial(); without Placeholder,
@@ -579,7 +579,7 @@ If partial() is applied to an existing
 partial object, Placeholder sentinels of the
 input object are filled in with new positional arguments.
 A placeholder can be retained by inserting a new
-Placeholder sentinel to the place held by a previous Placeholder:",,
+Placeholder sentinel to the place held by a previous Placeholder:",1,Giải thích Placeholder có ví dụ nhưng thiếu đoạn giới thiệu partial/Placeholder.
 B,library_hashlib,13198,paragraph-bf7f45b1b16d9c75dd6dc160,"Hash objects from this module follow the API of standard library’s
 hashlib objects.
 
@@ -610,7 +610,7 @@ for BLAKE2s).
 
 The following table shows limits for general parameters (in bytes):
 
-Hash",,
+Hash",2,"Mở đầu giới thiệu đối tượng hash, constructor và các tham số BLAKE2 có cấu trúc."
 C,library_argparse,40877,paragraph-5d1bbc46926939ecd5280a33,">>> parser = argparse.ArgumentParser()
 >>> _ = parser.add_argument('--verbose', type=bool)
 >>> parser.parse_args(['--verbose', 'False'])
@@ -637,7 +637,7 @@ the parser has run and then use the with-statement to manage the
 files.
 
 For type checkers that simply check against a fixed set of values, consider
-using the choices keyword instead.",,
+using the choices keyword instead.",2,"Ví dụ parse_args và giải thích type/choices liền mạch, dễ hiểu khi đọc riêng."
 C,library_asyncio,1091,paragraph-5c6424c0fe30ea955cd8a642,"asyncio — Asynchronous I/O
 
 asyncio is a library to write concurrent code using
@@ -685,7 +685,7 @@ running subprocesses,
 handling OS signals, etc;
 
 implement efficient protocols using
-transports;",,
+transports;",2,Mở đầu bằng tiêu đề và định nghĩa asyncio; các chức năng/API được liệt kê rõ.
 C,library_collections,21997,paragraph-57879a5ce3ac4dc8ac3842f1,"To implement deque slicing, use a similar approach applying
 rotate() to bring a target element to the left side of the deque. Remove
 old entries with popleft(), add new entries with extend(), and then
@@ -713,7 +713,7 @@ as if they were passed to the dict constructor, including keyword
 arguments.
 
 defaultdicts are generic over two types,
-signifying (respectively) the types of the dictionary’s keys and values.",,
+signifying (respectively) the types of the dictionary’s keys and values.",1,Đoạn deque mở bằng tham chiếu similar approach; phần defaultdict sau đó rõ nhưng thiếu liên kết chủ đề.
 C,library_concurrent_futures,12835,paragraph-1ccf8790ce00b7254e388657,"The executor may replace uncaught exceptions from initializer
 with ExecutionFailed.
 
@@ -740,7 +740,7 @@ The ProcessPoolExecutor class is an Executor subclass that
 uses a pool of processes to execute calls asynchronously.
 ProcessPoolExecutor uses the multiprocessing module, which
 allows it to side-step the Global Interpreter Lock but also means that
-only picklable objects can be executed and returned.",,
+only picklable objects can be executed and returned.",1,Nêu worker/executor nhưng bắt đầu giữa ngữ cảnh ProcessPool; phần sau khá rõ.
 C,library_csv,10381,paragraph-566ce784604ebd5d1ade2b3f,"The excel_tab class defines the usual properties of an Excel-generated
 TAB-delimited file. It is registered with the dialect name 'excel-tab'.
 
@@ -771,7 +771,7 @@ the delimiters listed in the preferred attribute
 are preferred, in that order,
 no matter how many times each of them occurs.
 
-has_header(sample)",,
+has_header(sample)",2,"Mô tả Sniffer và hai phương thức sniff/has_header thành mạch, đầy đủ."
 C,library_dataclasses,14524,paragraph-2c203eb17c923e248a5e5a98,"Example of using asdict() on nested dataclasses:
 
 @dataclass
@@ -814,7 +814,7 @@ To create a shallow copy, the following workaround may be used:
 tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))
 
 astuple() raises TypeError if obj is not a dataclass
-instance.",,
+instance.",2,"Ví dụ asdict/astuple và kết quả được trình bày đầy đủ, có thể hiểu độc lập."
 C,library_datetime,45259,paragraph-06c868d70d0432ab8c40040d,"The optional argument timespec specifies the number of additional
 components of the time to include (the default is 'auto').
 It can be one of the following:
@@ -856,7 +856,7 @@ d.isoformat(' ').
 
 datetime.ctime()
 
-Return a string representing the date and time:",,
+Return a string representing the date and time:",2,"Giải thích timespec, tênh giá trị và ví dụ ValueError liền mạch."
 C,library_decimal,34985,paragraph-e347c3a965496dfa99d5f781,"Return a context object initialized to the proper values for one of the
 IEEE interchange formats. The argument must be a multiple of 32 and less
 than IEEE_CONTEXT_MAX_BITS.
@@ -881,7 +881,7 @@ decimal.ExtendedContext
 This is a standard context defined by the General Decimal Arithmetic
 Specification. Precision is set to nine. Rounding is set to
 ROUND_HALF_EVEN. All flags are cleared. No traps are enabled (so that
-exceptions are not raised during computations).",,
+exceptions are not raised during computations).",1,Bắt đầu bằng mô tả một context chưa có tên; nội dung các context sau dễ hiểu một phần.
 C,library_functools,13355,paragraph-9fc9e01f7b48b783eabd63d8,"If Placeholder sentinels are present in args, they will be filled first
 when partial() is called. This makes it possible to pre-fill any positional
 argument with a call to partial(); without Placeholder,
@@ -901,7 +901,7 @@ If partial() is applied to an existing
 partial object, Placeholder sentinels of the
 input object are filled in with new positional arguments.
 A placeholder can be retained by inserting a new
-Placeholder sentinel to the place held by a previous Placeholder:",,
+Placeholder sentinel to the place held by a previous Placeholder:",1,Giải thích Placeholder có ví dụ nhưng thiếu đoạn giới thiệu partial/Placeholder.
 C,library_hashlib,13198,paragraph-bf7f45b1b16d9c75dd6dc160,"Hash objects from this module follow the API of standard library’s
 hashlib objects.
 
@@ -932,4 +932,4 @@ for BLAKE2s).
 
 The following table shows limits for general parameters (in bytes):
 
-Hash",,
+Hash",2,"Mở đầu giới thiệu đối tượng hash, constructor và các tham số BLAKE2 có cấu trúc."
