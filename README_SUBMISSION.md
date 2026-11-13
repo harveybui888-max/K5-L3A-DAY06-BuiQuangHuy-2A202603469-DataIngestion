@@ -76,4 +76,3 @@ Tất cả cấu hình sử dụng cùng corpus, benchmark, model và Chroma. Ca
 - `artifacts/experiment_log.csv`: nhật ký cấu hình và chỉ số.
 - `report/individual/2A202603469_BuiQuangHuy.md`: báo cáo cá nhân.
 
-Các ô điểm audit thủ công được để trống có chủ đích. Hãy kiểm tra nguồn/top-3, điền nhãn và lý do vào ba file audit, sau đó hoàn thiện phần kết luận của báo cáo; không suy ra điểm thủ công từ metric tự động.
